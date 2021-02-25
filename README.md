@@ -10,6 +10,10 @@ curl -v  -H 'cluster: echojs' http://127.0.0.1:8180/echo/echo
 
 	{"code":5,"message":"#%20node:%20here's%20an%20error%20message%20with%20spaces%20&%20some%20interesting%20characters!","details":[]}* Closing connection 0
 
+node returns %-encoded headers, but this is apparently expected as eg. `grpcurl` decodes before printing. Envoy should do this decoding as well.
+
+This commit seems to fix the issue: https://github.com/kentik/envoy/commit/d1b24e225039c0ea98f6fe7f62c9ae83b7ca655b
+
 ## json to go via envoy
 
 The same call to a go upstream looks fine (b/c the go grpc impl doesn't percent encode grpc status message headers)
