@@ -1,0 +1,25 @@
+// A simple echo service definition
+
+syntax = "proto3";
+
+package grpcecho;
+option go_package = "github.com/kentik/grpcecho";
+
+import "google/api/annotations.proto";
+
+message EchoRequest {
+  string message = 1;
+}
+
+message EchoResponse {
+  string message = 1;
+  string request_json = 2;
+}
+
+service EchoService {
+  rpc Echo(EchoRequest) returns (EchoResponse) {
+    option (google.api.http) = {
+      get: "/echo/echo"
+    };
+  }
+}
