@@ -21,12 +21,12 @@ curl -v  -H 'cluster: echo' http://127.0.0.1:8180/echo/echo
 ## pcaps show how these headers look different on the wire
 
 Node:
-        Header: grpc-message: #%20node:%20here's%20an%20error%20message%20with%20spaces%20&%20some%20interesting%20characters!
+`        Header: grpc-message: #%20node:%20here's%20an%20error%20message%20with%20spaces%20&%20some%20interesting%20characters!`
 
 Go:
-        Header: grpc-message: # here's an error message with spaces & some interesting characters!
+`        Header: grpc-message: # here's an error message with spaces & some interesting characters!`
 
-
+See go.pcap, node.pcap and Decode.md
 
 ## grpcurl decodes correctly
 
